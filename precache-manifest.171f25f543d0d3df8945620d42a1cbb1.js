@@ -24,7 +24,7 @@ self.__precacheManifest = [
     "url": "/webnotes/static/css/main.e80323a5.chunk.css"
   },
   {
-    "revision": "959d0724bb28a3a6a3872821021152af",
+    "revision": "9574205f0cbde45485f72ee3486cbf28",
     "url": "/webnotes/index.html"
   }
 ];
