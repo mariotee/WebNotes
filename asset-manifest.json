@@ -1,11 +1,11 @@
 {
-  "main.css": "/webnotes/static/css/main.e80323a5.chunk.css",
-  "main.js": "/webnotes/static/js/main.d0a5cdf8.chunk.js",
-  "static/js/1.dcbbcf74.chunk.js": "/webnotes/static/js/1.dcbbcf74.chunk.js",
-  "runtime~main.js": "/webnotes/static/js/runtime~main.4b6ad596.js",
-  "static/media/eye.svg": "/webnotes/static/media/eye.35347e34.svg",
-  "static/media/eyeslash.svg": "/webnotes/static/media/eyeslash.e1717ce7.svg",
-  "index.html": "/webnotes/index.html",
-  "precache-manifest.06e9943adebc4371921302d4c04ffa89.js": "/webnotes/precache-manifest.06e9943adebc4371921302d4c04ffa89.js",
-  "service-worker.js": "/webnotes/service-worker.js"
+  "main.css": "/WebNotes/static/css/main.e80323a5.chunk.css",
+  "main.js": "/WebNotes/static/js/main.37d27a29.chunk.js",
+  "static/js/1.dcbbcf74.chunk.js": "/WebNotes/static/js/1.dcbbcf74.chunk.js",
+  "runtime~main.js": "/WebNotes/static/js/runtime~main.904caf43.js",
+  "static/media/eye.svg": "/WebNotes/static/media/eye.35347e34.svg",
+  "static/media/eyeslash.svg": "/WebNotes/static/media/eyeslash.e1717ce7.svg",
+  "index.html": "/WebNotes/index.html",
+  "precache-manifest.0700f5a2ca134fff968c825ebd44bab0.js": "/WebNotes/precache-manifest.0700f5a2ca134fff968c825ebd44bab0.js",
+  "service-worker.js": "/WebNotes/service-worker.js"
 }
