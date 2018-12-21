@@ -12,19 +12,19 @@ self.__precacheManifest = [
     "url": "/WebNotes/static/js/runtime~main.904caf43.js"
   },
   {
-    "revision": "37d27a29e95777c2b32d",
-    "url": "/WebNotes/static/js/main.37d27a29.chunk.js"
+    "revision": "ab108a5e67f4cee85857",
+    "url": "/WebNotes/static/js/main.ab108a5e.chunk.js"
   },
   {
-    "revision": "dcbbcf74f44e896b720a",
-    "url": "/WebNotes/static/js/1.dcbbcf74.chunk.js"
+    "revision": "ce36c6c8f138d06daa52",
+    "url": "/WebNotes/static/js/1.ce36c6c8.chunk.js"
   },
   {
-    "revision": "37d27a29e95777c2b32d",
-    "url": "/WebNotes/static/css/main.e80323a5.chunk.css"
+    "revision": "ab108a5e67f4cee85857",
+    "url": "/WebNotes/static/css/main.1d6fea20.chunk.css"
   },
   {
-    "revision": "6033b1ceaa16083f11707a3af2ea56b7",
+    "revision": "7fc0cf157508a31dd5eaba804a6f78b9",
     "url": "/WebNotes/index.html"
   }
 ];
