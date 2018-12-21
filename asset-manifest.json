@@ -1,11 +1,11 @@
 {
   "main.css": "/WebNotes/static/css/main.1d6fea20.chunk.css",
-  "main.js": "/WebNotes/static/js/main.ab108a5e.chunk.js",
+  "main.js": "/WebNotes/static/js/main.10e452a9.chunk.js",
   "static/js/1.ce36c6c8.chunk.js": "/WebNotes/static/js/1.ce36c6c8.chunk.js",
   "runtime~main.js": "/WebNotes/static/js/runtime~main.904caf43.js",
   "static/media/eye.svg": "/WebNotes/static/media/eye.35347e34.svg",
   "static/media/eyeslash.svg": "/WebNotes/static/media/eyeslash.e1717ce7.svg",
   "index.html": "/WebNotes/index.html",
-  "precache-manifest.7ca7e98701a18d7559247dd239b969f8.js": "/WebNotes/precache-manifest.7ca7e98701a18d7559247dd239b969f8.js",
+  "precache-manifest.51e8c78e405baecf9cf7a48aeadbfe96.js": "/WebNotes/precache-manifest.51e8c78e405baecf9cf7a48aeadbfe96.js",
   "service-worker.js": "/WebNotes/service-worker.js"
 }
