@@ -1,0 +1,19 @@
+{
+  "name": "webnotes-lambda",
+  "version": "1.0.0",
+  "description": "single lambda with sublambda node scripts",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha _tests",
+    "test:watch": "mocha _tests --watch"
+  },
+  "author": "Mario Torres",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "mongoose": "^5.4.0"
+  },
+  "devDependencies": {
+    "mocha": "^5.2.0"
+  }
+}

@@ -1,0 +1,42 @@
+.root {
+  padding: 20px 32px;
+}
+
+.input {
+  width: 100%;
+  background-color: inherit;
+  border: 2px solid #ccc9;  
+  resize: none;
+  font-family: inherit;
+  font-size: 16px;
+}
+
+.input:focus {
+  outline: none;
+  border: 2px solid #0c69;
+}
+
+.input-label {
+  color: #666;
+}
+
+.priority {
+  margin: 0 0 16px 0;
+  color: #666;
+}
+.select {  
+  background-color: inherit;
+  border: 2px solid #ccc9;
+  margin: 0 32px;
+}
+
+.select:focus {
+  outline: none;
+  border: 2px solid #0c69;
+}
+
+.charcount {
+  font-size: 14px;
+  color: #999;
+  text-align: right;  
+}
