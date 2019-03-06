@@ -8,7 +8,7 @@ exports.handler = async (event) => {
       if( event.byId ) {
         return await controller.getById(event.id);
       }
-      else if( event.byFilter ) {
+      if( event.byFilter ) {
         return await controller.getAllEntriesByFilter(event.get);
       }
       

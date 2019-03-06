@@ -29,7 +29,7 @@ class EntryController
    * posts an entry to the database
    * @param {EntryModel} entry 
    */
-  async post(entry) {
+  async post(entry) {    
     return await (new EntryModel(entry)).save();
   }
 
@@ -50,9 +50,9 @@ class EntryController
    */
   async deleteById(id) {    
     let entry = await EntryModel.findById(id);
-    let now = new Date();    
-    let noteTime = new Date(entry.timestamp);
-    if((now.getTime() - noteTime.getTime()) > 30000) {
+    let now = Date.now();
+    let noteTime = new Date(entry.timestamp).getTime();
+    if(now - noteTime > 30000) {
       return await this._renameDelete(id);
     }
     

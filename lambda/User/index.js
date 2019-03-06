@@ -7,12 +7,17 @@ exports.handler = async (event) => {
     case 'GET':
       return await controller.getUser(event.get)
     case 'POST':
+      console.log("entered user handler post")
       return await controller.createAccount(event.post)
     case 'PUT':
-      return await controller.updateEmail(event.put)
+      if (event.email)
+        return await controller.updateEmail(event.put)
+      if (event.session)
+        return await controller.updateSession(event.put)
+      else throw Error("missing a PUT key")
     case 'DELETE':
       return await controller.deleteAccount(event.delete)
     default: 
-      throw Error('method not specified')
-  }
+      throw Error("method not specified")
+  }  
 }

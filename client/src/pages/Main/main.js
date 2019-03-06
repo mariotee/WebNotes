@@ -1,8 +1,5 @@
 import React from "react"
-import { Card, CardHeader, CardContent } from "@material-ui/core"
-import { Button } from "@material-ui/core"
-import { withStyles } from "@material-ui/core"
-import styles from "./style.js"
+import styles from "./style.module.css"
 
 import * as entryApi from "../../api/entry.js"
 
@@ -13,8 +10,7 @@ export default class Main extends React.Component {
   state = {
     characterCount: 0,
     newNote: {
-      post: "",
-      priority: 10,
+      post: "",      
     },
   }
 
@@ -48,12 +44,11 @@ export default class Main extends React.Component {
   }
 
   postKeyPress = async (event) => {
-    if (event.key === "Enter") {
+    if (event.key === "Enter") {      
       let res = await entryApi.createNote({
         user: this.props.user,
         timestamp: new Date(),
-        post: this.state.newNote.post,
-        priority: this.state.newNote.priority,
+        post: this.state.newNote.post,        
       })
 
       if (res && !res.errorMessage) {
@@ -62,48 +57,45 @@ export default class Main extends React.Component {
 
       this.setState({
         newNote: {
-          post: "",
-          priority: 10,
+          post: "",          
         },
       })
     }
   }
 
-  render() {    
+  render() {
+    const {data} = this.props || []
+
     return <div className={styles.root}>
-      <Card className={styles.main}>
-        <CardHeader className={styles.header} title="Your Notes" />
-        <CardContent className={styles.body}>
-          {this.props.data
-            ? this.props.data.map((element, index) => {
-              return <Note key={index} data={element} onDelete={this.onDeleteNote} />
+      <div className={styles.main}>
+        <div className={styles.header}>
+          Web Notes
+        </div>
+        <div className={styles.body}>
+          {
+            data.length > 0 && data.map((element, index) => {
+              return <Note 
+                key={"note_"+index} 
+                data={element} 
+                onDelete={this.onDeleteNote}
+              />
             })
-            : null}
-        </CardContent>
-        <CardContent className={styles.bottom}>
+          }
           <CreatePost
             newNote={this.state.newNote}
             onChange={this.onFieldChange}
             onKey={this.postKeyPress}
           />
-          <Button
-            className={styles.fourthButton}
-            variant="contained"
-            onClick={() =>
-              this.postKeyPress({
-                key: "Enter",
-              })
-            }
-          >
-            Post Note
-          </Button>
-        </CardContent>
-      </Card>
-      <div className={styles.footer}>
-        <Button className={styles.secondButton} variant="contained" onClick={this.props.logout}>
-          Logout
-        </Button>
+        </div>
       </div>
-    </div>    
+      <div className={styles.footer}>
+        <button          
+          color="first"
+          onClick={this.props.logout}
+        >
+          Logout
+        </button>
+      </div>
+    </div>
   }
 }

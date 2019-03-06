@@ -1,17 +1,8 @@
-const Database = require("../database.js")
 const assert = require("assert")
 const lambda = require("../Entry")
 var posted
 
 describe("entry POST", () => {
-  before(async () => {
-    await Database.open()
-  })
-
-  after(async () => {
-    await Database.close()
-  })
-
   it("should return the POSTed data", async () => {
     const postreq = {
       user: "TEST",
@@ -29,7 +20,7 @@ describe("entry POST", () => {
     posted = res
   })
 
-  it("should fail to POST due to missing field", async () => {    
+  it("should fail to POST due to missing field", async () => {
     const postreq = {
       timestamp: new Date(),
       post: "test post",
@@ -46,14 +37,6 @@ describe("entry POST", () => {
 })
 
 describe("entry GET", () => {
-  before(async () => {
-    await Database.open()
-  })
-
-  after(async () => {
-    await Database.close()
-  })
-
   it("should return the data from GET by filter", async () => {
     let get = await lambda.handler({
       method: "GET",
@@ -62,9 +45,16 @@ describe("entry GET", () => {
         user: posted.user,
       }
     })
+    
+    let gotUser = false
 
-    assert.strictEqual(get.length, 1)
-    assert.strictEqual(get[0].user, posted.user)
+    for (const entry of get) {
+      if (entry.user === posted.user) {
+        gotUser = true
+      }
+    }
+
+    assert.strictEqual(gotUser, true)
   })
 
   it("should return the data from GET by id", async () => {    
@@ -89,15 +79,7 @@ describe("entry GET", () => {
   })
 })
 
-describe("entry UPDATE", () => {
-  before(async () => {
-    await Database.open()
-  })
-
-  after(async () => {
-    await Database.close()
-  })
-
+describe("entry UPDATE", () => {  
   it("should return the UPDATEd data which is the same", async () => {
     let updated = await lambda.handler({
       method: "PUT",
@@ -132,15 +114,7 @@ describe("entry UPDATE", () => {
   })
 })
 
-describe("entry DELETE", () => {
-  before(async () => {
-    await Database.open()
-  })
-
-  after(async () => {
-    await Database.close()
-  })
-  
+describe("entry DELETE", () => {    
   it("should return the DELETEd data", async () => {    
     let deleted = await lambda.handler({
       method: "DELETE",

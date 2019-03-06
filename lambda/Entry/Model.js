@@ -17,7 +17,7 @@ const schema = new mongoose.Schema({
   parentId: {
     type: mongoose.Schema.Types.ObjectId,
     required: false,
-  }
+  },
 });
- 
+
 module.exports = mongoose.model('Entry', schema, 'Entries');

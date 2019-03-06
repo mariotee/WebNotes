@@ -1,5 +1,11 @@
 .root {
-  padding: 20px 32px;
+  padding: 20px 32px;  
+}
+
+.head {
+  display: flex;
+  justify-content: space-between;
+  margin: 4px;
 }
 
 .input {
@@ -16,7 +22,7 @@
   border: 2px solid #0c69;
 }
 
-.input-label {
+.inputlabel {
   color: #666;
 }
 

@@ -21,7 +21,13 @@ const schema = new mongoose.Schema({
   password: {
     type: String,
     required: true,
+  },
+  session: {
+    type: String,
+    required: false,  
+    unique: true,
+    index: true,
+    sparse: true,
   }
 });
- 
 module.exports = mongoose.model('User', schema, 'Users');

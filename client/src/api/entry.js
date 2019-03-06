@@ -2,11 +2,13 @@ import axios from "axios"
 
 import {LAMBDA_URL} from "./constants.js"
 
-
-export const getAllNotesByUser = async (userStr) => {
+export const getAllNotes = async () => {
   let res = await axios.post(LAMBDA_URL, {
-    method: "GET",
-    user: userStr,
+    controller: "ENTRY",
+    sub: {
+      method: "GET",
+      byFilter: {}
+    }
   })
 
   return res.data
@@ -14,9 +16,12 @@ export const getAllNotesByUser = async (userStr) => {
 
 export const getNoteById = async (idStr) => {
   let res = await axios.post(LAMBDA_URL, {
-    method: "GET",
-    byId: true,
-    id: idStr,
+    controller : "ENTRY",
+    sub: {
+      method: "GET",
+      byId: true,
+      id: idStr,
+    }
   })
 
   return res.data
@@ -24,18 +29,24 @@ export const getNoteById = async (idStr) => {
 
 export const createNote = async (postObj) => {
   let res = await axios.post(LAMBDA_URL, {
-    method: "POST",
-    post: postObj,
+    controller: "ENTRY",
+    sub: {
+      method: "POST",
+      post: postObj,
+    }
   })
-
+  
   return res.data
 }
 
 export const updateNoteById = async (idStr, fieldsToUpdate) => {
   let res = await axios.post(LAMBDA_URL, {
-    method: "PUT",
-    id: idStr,
-    put: fieldsToUpdate,
+    controller : "ENTRY",
+    sub: {
+      method: "PUT",
+      id: idStr,
+      put: fieldsToUpdate,
+    }
   })
 
   return res.data
@@ -43,8 +54,11 @@ export const updateNoteById = async (idStr, fieldsToUpdate) => {
 
 export const deleteNoteById = async (idStr) => {
   let res = await axios.post(LAMBDA_URL, {
-    method: "DELETE",
-    id: idStr,
+    controller : "ENTRY",
+    sub: {
+      method: "DELETE",
+      id: idStr,
+    }
   })
 
   return res.data

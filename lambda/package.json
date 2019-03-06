@@ -4,8 +4,9 @@
   "description": "single lambda with sublambda node scripts",
   "main": "index.js",
   "scripts": {
-    "test": "mocha _tests",
-    "test:watch": "mocha _tests --watch"
+    "test": "mocha _tests/*.test.js",
+    "test:watch": "mocha _tests/*.test.js --watch",
+    "test:crapinternet": "mocha _tests/*.test.js --timeout 60000"
   },
   "author": "Mario Torres",
   "license": "ISC",

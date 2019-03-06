@@ -1,0 +1,42 @@
+@import "../../theme/theme.module.css";
+
+div.main {
+  border-radius: var(--bordersrad);
+  margin: 16px auto;  
+  width: 90%;
+  max-width: 720px;
+  overflow: hidden;
+}
+
+div.header {
+  background-color: var(--first);
+  padding: 16px 0;
+  text-align: center;
+}
+
+div.body {  
+  padding: calc(2*var(--spacing)) calc(3*var(--spacing));
+  background-color: var(--second);
+}
+
+button {    
+  font-size: 0.9rem;
+}
+
+button.postbutton {
+  position: relative;
+  float: right;
+  top: -12px;
+}
+
+div.footer {  
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+div.footer button {
+  padding: 4px;
+  font-size: 1rem;  
+  width: 45%;
+}

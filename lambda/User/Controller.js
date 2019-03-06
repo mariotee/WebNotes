@@ -13,23 +13,29 @@ class UserController
       return ({
         username: res.username,
         email: res.email,
+        session: res.session,
       });
     }
   }
 
   async createAccount(req) {
     if(req.password) {
-      const salt = bcrypt.genSaltSync(saltRounds);
-      const hash = bcrypt.hashSync(req.password,salt);
+      const salt = bcrypt.genSaltSync(saltRounds);      
+      const hash = bcrypt.hashSync(req.password,salt);      
       req.password = hash;
       
-      let res = await (new UserModel(req)).save();
-
+      let res = await (new UserModel(req)).save()
+        .catch((err) => {
+          throw new Error("error on save new account")
+        })
+      
       return ({
         username: res.username,
         email: res.email,
       });
     };
+    
+    throw new Error("cannot create account with this request")    
   }
 
   async updateEmail(req) {
@@ -50,6 +56,29 @@ class UserController
         username: res.username,
         email: res.email,
       });
+    }
+  }
+
+  async updateSession(req) {
+    const options = {new: true};
+    const updates = {
+      session: req.session
+    }
+
+    let get = await UserModel.findOne({
+      username: req.username,
+    });
+
+    if(get && bcrypt.compareSync(req.password, get.password)) {
+      let res = await UserModel.findOneAndUpdate({
+        username: req.username,
+      }, updates, options);
+
+      return {
+        username: res.username,
+        email: res.email,
+        session: res.session,
+      }
     }
   }
 

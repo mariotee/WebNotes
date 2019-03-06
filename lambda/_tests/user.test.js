@@ -1,17 +1,8 @@
-const Database = require("../database.js")
 const assert = require("assert")
 const lambda = require("../User")
 var posted
 
 describe("user POST", () => {
-  before(async () => {
-    await Database.open()
-  })
-
-  after(async () => {
-    await Database.close()
-  })
-
   it("should return the POSTed user", async () => {
     const postreq = {
       username: "TEST",
@@ -29,43 +20,29 @@ describe("user POST", () => {
   })  
 })
 
-describe("user GET", () => {
-  before(async () => {
-    await Database.open()
-  })
-
-  after(async () => {
-    await Database.close()
-  })
-
+describe("user GET", () => {  
   it("should return the GET user", async () => {
     
   })
 })
 
 describe("user PUT", () => {
-  before(async () => {
-    await Database.open()
-  })
-
-  after(async () => {
-    await Database.close()
-  })
-
-  it("should return the PUT user", async () => {
+  it("should return the session that was PUT", async () => {
+    let res = await lambda.handler({
+      method: "PUT",
+      session: true,
+      put: {
+        username: "TEST",
+        password: "password",
+        session: "12345",
+      }
+    })
     
-  })
+    assert.strictEqual(res.session, "12345")
+  })  
 })
 
 describe("user DELETE", () => {
-  before(async () => {
-    await Database.open()
-  })
-
-  after(async () => {
-    await Database.close()
-  })
-  
   it("should return the DELETEd user", async () => {
     let res = await lambda.handler({
       method: "DELETE",

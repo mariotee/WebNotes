@@ -1,13 +1,22 @@
 import React from "react"
-import "./style.module.css"
+import styles from "./style.module.css"
 
 export default function CreatePost(props) {
-  return <div className="root">
-    <label className="input-label">
-      <b>Note</b>
-    </label>
+  return <div className={styles.root}>
+    <div className={styles.head}>
+      <label className={styles.inputlabel}>
+        <b>Note</b>
+      </label>
+      <button
+        color="third"
+        className={styles.postbutton}
+        onClick={() => props.onKey({key: "Enter",})}
+      >
+        Post Note
+      </button>
+    </div>
     <textarea
-      className="input"
+      className={styles.input}
       name="post"
       placeholder={"hit ENTER to submit"}
       value={props.newNote.post}
@@ -20,6 +29,6 @@ export default function CreatePost(props) {
         props.onChange(event)
       }}
     />
-    <div className="charcount">{`${props.newNote.post.length}/140`}</div>
+    <div className={styles.charcount}>{`${props.newNote.post.length}/140`}</div>
   </div>  
 }

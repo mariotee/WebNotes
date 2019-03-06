@@ -1,9 +1,5 @@
 import React from "react"
-import { Card, CardHeader, CardContent } from "@material-ui/core"
-import { InputLabel, Input, Button } from "@material-ui/core"
-import Eye from "../../assets/eye.svg"
-import EyeSlash from "../../assets/eyeslash.svg"
-import styles from "./style.js"
+import styles from "./style.module.css"
 
 export default class LoginPage extends React.Component {
   state = {
@@ -25,26 +21,24 @@ export default class LoginPage extends React.Component {
   }
 
   render() {    
-    return <Card className={styles.root}>
-      <CardHeader
-        title="Web Notes"
-        subheader={
-          <span style={{ display: this.props.loading ? "block" : "none" }}>
-            hang on a moment. signing you in...
-          </span>
-        }
-      />
-      <CardContent>
-        <InputLabel className={styles.label}>User</InputLabel>
-        <Input
+    return <div className={styles.root}>
+      <div className={styles.header}>
+        <h2>Web Notes</h2>
+        <span style={{ display: this.props.loading ? "block" : "none" }}>
+          hang on a moment. signing you in...
+        </span>
+      </div>
+      <div>
+        <label className={styles.label}>User</label>
+        <input
           className={styles.input}
           name="name"
           value={this.state.name}
           onChange={(event) => this.onChange(event)}
         />
         <br />
-        <InputLabel className={styles.label}>Password</InputLabel>
-        <Input
+        <label className={styles.label}>Password</label>
+        <input
           className={styles.input}
           name="passwordEntered"
           value={this.state.passwordEntered}
@@ -58,31 +52,18 @@ export default class LoginPage extends React.Component {
               })
             }
           }}
-          endAdornment={
-            !this.state.passwordVisible ? (
-              <img
-                width={24}
-                height={24}
-                alt="show/hide password"
-                src={Eye}
-                onClick={this.togglePasswordVisibility}
-              />
-            ) : (
-              <img
-                width={24}
-                height={24}
-                alt="show/hide password"
-                src={EyeSlash}
-                onClick={this.togglePasswordVisibility}
-              />
-            )
-          }
         />
-        <br />
-        <br />
-        <Button
-          className={styles.secondButton}
-          variant="contained"
+        <br/>
+        <input
+          className={styles.checkbox}
+          type="checkbox"
+          onClick={() => this.togglePasswordVisibility()}
+        />
+        <span className={styles.showpass}>Show Password</span>
+        <br/>
+        <button
+          className={styles.loginbuttons}
+          color="second"          
           onClick={() =>
             this.props.onSubmit({
               username: this.state.name,
@@ -91,11 +72,11 @@ export default class LoginPage extends React.Component {
           }
         >
           Sign In
-        </Button>
+        </button>
         <br />
-        <Button
-          className={styles.thirdButton}
-          variant="contained"
+        <button
+          className={styles.loginbuttons}
+          color="third"          
           onClick={() =>
             this.props.onSubmit({
               username: "GUEST",
@@ -103,15 +84,15 @@ export default class LoginPage extends React.Component {
           }
         >
           Enter As Universal Guest
-        </Button>
+        </button>
         <br />
-        <Button
-          className={styles.fourthButton}
-          variant="contained"
+        <button
+          className={styles.loginbuttons}
+          color="fourth"
           onClick={this.props.createAccount}
         >
           Create Account
-        </Button>
+        </button>
         <div
           style={{
             backgroundColor: "#f9c9",
@@ -119,18 +100,24 @@ export default class LoginPage extends React.Component {
             padding: "8px",
           }}
         >
-          <InputLabel className={styles.label}>Username</InputLabel>
-          <Input name="newUsername" onChange={(event) => this.onChange(event)} />
+          <label className={styles.label}>Username</label>
+          <input 
+            className={styles.input}
+            name="newUsername" 
+            onChange={(event) => this.onChange(event)} 
+          />
           <br />
-          <InputLabel className={styles.label}>Email</InputLabel>
-          <Input
+          <label className={styles.label}>Email</label>
+          <input
+            className={styles.input}
             placeholder="(optional)"
             name="newEmail"
             onChange={(event) => this.onChange(event)}
           />
           <br />
-          <InputLabel className={styles.label}>Password</InputLabel>
-          <Input
+          <label className={styles.label}>Password</label>
+          <input
+            className={styles.input}
             name="newPassword"
             onChange={(event) => this.onChange(event)}
             onKeyPress={(event) => {
@@ -143,11 +130,9 @@ export default class LoginPage extends React.Component {
               }
             }}
           />
-          <br />
-          <br />
-          <Button
-            variant="contained"
-            className={styles.secondButton}
+          <button
+            color="second"
+            className={styles.loginbuttons}
             onClick={() =>
               this.props.onPost({
                 username: this.state.newUsername,
@@ -157,9 +142,9 @@ export default class LoginPage extends React.Component {
             }
           >
             Submit
-          </Button>
+          </button>
         </div>
-      </CardContent>
-    </Card>  
+      </div>
+    </div>  
   }
 }

@@ -1,10 +1,7 @@
 import React from "react"
-import { withStyles } from "@material-ui/core"
-import style from "./style.js"
+import styles from "./style.module.css"
 
-function Note(props) {
-  const { classes } = props
-
+export default function Note(props) {
   const numToPaddedString = (num) => {
     return String(num).length < 2 ? "0" + num : num
   }
@@ -27,22 +24,19 @@ function Note(props) {
     return `${month}/${day}/${year} ${hour}:${minute} ${tod}`
   }
 
-  return <div className={classes.root}>
-    <div className={classes.body}>
-      <div className={classes.timestamp}>{parseDate(props.data.timestamp)}</div>
-      <div className={classes.post}>{props.data.post}</div>
-      <div className={classes.footer}>
-        <div className={classes.prtyBadge}>Priority: {props.data.priority}</div>
-        <Button
-          className={classes.button}
-          size="small"
+  return <div className={styles.root}>
+    <div className={styles.body}>
+      <div className={styles.timestamp}>{parseDate(props.data.timestamp)}</div>
+      <div className={styles.post}>{props.data.post}</div>
+      <div className={styles.footer}>
+        <span className={styles.username}>{props.data.user}</span>
+        <button
+          color="fourth"
           onClick={() => props.onDelete(props.data._id)}
         >
           Delete
-        </Button>
+        </button>
       </div>
     </div>
   </div>  
 }
-
-export default withStyles(style)(Note)

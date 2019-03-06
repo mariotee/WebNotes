@@ -1,0 +1,44 @@
+@import "../../theme/theme.module.css";
+
+div.root {  
+  background-color: var(--first);
+  border-radius: var(--bordersrad);
+  max-width: 720px;
+  width: 80%;
+  margin: calc(3*var(--spacing)) auto;
+  padding: calc(2*var(--spacing));
+  text-align: center;  
+  font-size: 1.15rem;
+}
+
+h2 {
+  margin: var(--spacing);  
+}
+
+button.loginbuttons {
+  margin: 4px 0;
+  width: 45%;
+  font-size: 0.9rem;
+}
+
+label.label {
+  margin: 0 16px;
+  color: #000;
+}
+
+span.showpass {
+  font-size: 0.9rem;
+}
+
+input.input {
+  border: none;
+  background: none;
+  border-bottom: 2px solid #00000030;
+  width: 50%;
+  max-width: 240px;
+  margin: var(--spacing) 0;
+}
+
+input.checkbox {
+  margin: calc(2*var(--spacing)) calc(1.5*var(--spacing));
+}

@@ -1,19 +1,32 @@
 import React from "react"
+//import jscookie from "js-cookie"
+
 import Login from "../pages/Login"
 import Main from "../pages/Main"
 
 import * as userApi from "../api/user.js"
 import * as entryApi from "../api/entry.js"
 
+//import {generateToken} from "../api/utils.js"
+
+//const tokencookey = "token_current_user"
+
 export default class App extends React.Component {
   state = {
-    loggedIn: false,
+    loggedIn: false,    
     loadingUser: false,
     creatingAccount: false,
     loginError: false,
     postError: false,
     notes: [],
+    user: "anonymous",
   }
+
+  // componentDidMount() {
+  //   if (jscookie.get(tokencookey)) {
+  //     jscookie.remove(tokencookey)
+  //   }
+  // }
 
   toggleCreate = () => {
     this.setState({
@@ -29,7 +42,7 @@ export default class App extends React.Component {
     let post = await userApi.createUser(req)
 
     if (post && !post.errorMessage) {
-      let data = await entryApi.getAllNotesByUser(post.username)
+      let data = await entryApi.getAllNotes()
 
       this.setState({
         notes: data,
@@ -39,8 +52,8 @@ export default class App extends React.Component {
         loginError: false,
         postError: false,
       })
-    } 
-    else {
+    }
+    else {      
       this.setState({
         loggedIn: false,
         loadingUser: false,
@@ -53,14 +66,15 @@ export default class App extends React.Component {
   submitLogin = async (req) => {
     if (!this.state.loggedIn) {
       if (req.username === "GUEST") {
-        let data = await entryApi.getAllNotesByUser("Guest")
+        let data = await entryApi.getAllNotes()
 
         this.setState({
           notes: data,
           loggedIn: true,
           loadingUser: false,
+          user: "anonymous",
         })
-      } 
+      }
       else {
         this.setState({
           loadingUser: true,
@@ -68,14 +82,18 @@ export default class App extends React.Component {
         let get = await userApi.getUser(req)
 
         if (get) {
-          let data = await entryApi.getAllNotesByUser(get.username)
+          // const token = generateToken()
+          // jscookie.set(tokencookey, token)
+          //let put = await userApi.updateToken          
 
+          let data = await entryApi.getAllNotes()
           this.setState({
             notes: data,
             loadingUser: false,
             loggedIn: true,
+            user: get.username,
           })
-        } 
+        }
         else {
           this.setState({
             loginError: true,
@@ -92,26 +110,44 @@ export default class App extends React.Component {
   }
 
   addNoteToState = (note) => {
-    let newData = this.state.notes
-    newData.push(note)
+    this.setState((prevState) => {
+      let newData = prevState.notes
+      newData.push(note)
 
-    this.setState({
-      notes: newData,
+      return {
+        notes: newData,
+      }
     })
   }
 
-  removeNoteFromState = (note) => {
-    let newData = this.state.notes
-    newData = this.state.notes.filter((element) => element._id !== note._id)
+  removeNoteFromState = (note) => {    
+    this.setState((prevState) => {
+      let newData = prevState.notes
+      if (Date.now() - new Date(note.timestamp).getTime() < 30000) {        
+        newData = prevState.notes.filter((element) => element._id !== note._id)
 
-    this.setState({
-      notes: newData,
+        return {
+          notes: newData,
+        }
+      }
+
+      newData = newData.map((element) => {
+        if (element._id === note._id) {
+          element.user = "deleted"
+          return element
+        }
+        else return element
+      })
+
+      return {
+        notes: newData,
+      }
     })
   }
 
   render() {
     if (this.state.loginError) {
-      window.alert("error logging in.")
+      window.alert("error logging in.")      
       this.setState({
         loadingUser: false,
         loginError: false,
@@ -127,8 +163,8 @@ export default class App extends React.Component {
     }
 
     if (this.state.loggedIn) {
-      return <Main
-        user={this.state.notes ? this.state.notes[0].user : "none"}
+      return <Main        
+        user={this.state.user}
         data={this.state.notes}
         addNoteToState={this.addNoteToState}
         removeNoteFromState={this.removeNoteFromState}
@@ -142,7 +178,6 @@ export default class App extends React.Component {
       createAccount={this.toggleCreate}
       creating={this.state.creatingAccount}
       loading={this.state.loadingUser}
-    />
-    
+    />    
   }
 }
