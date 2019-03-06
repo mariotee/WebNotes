@@ -1,5 +1,5 @@
 import axios from "axios"
-import {LAMBDA_URL } from "./constants.js"
+import {LAMBDA_URL} from "./constants.js"
 
 export const getUser = async (newUser) => {
   let res = await axios.post(LAMBDA_URL, {

@@ -11,6 +11,10 @@ import * as entryApi from "../api/entry.js"
 
 //const tokencookey = "token_current_user"
 
+const sortByTimestamp = (data) => {
+  data.sort((a,b) => a.timestamp > b.timestamp ? -1 : 1)
+}
+
 export default class App extends React.Component {
   state = {
     loggedIn: false,    
@@ -43,7 +47,7 @@ export default class App extends React.Component {
 
     if (post && !post.errorMessage) {
       let data = await entryApi.getAllNotes()
-
+      sortByTimestamp(data)
       this.setState({
         notes: data,
         loggedIn: true,
@@ -67,7 +71,7 @@ export default class App extends React.Component {
     if (!this.state.loggedIn) {
       if (req.username === "GUEST") {
         let data = await entryApi.getAllNotes()
-
+        sortByTimestamp(data)
         this.setState({
           notes: data,
           loggedIn: true,
@@ -87,6 +91,7 @@ export default class App extends React.Component {
           //let put = await userApi.updateToken          
 
           let data = await entryApi.getAllNotes()
+          sortByTimestamp(data)
           this.setState({
             notes: data,
             loadingUser: false,
