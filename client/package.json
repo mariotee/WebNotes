@@ -20,7 +20,9 @@
     "eject": "react-scripts eject",
     "prelintfix": "prettier --write src/**/*.js",
     "lintfix": "eslint ./src --fix",
-    "lintcheck": "eslint ./src"
+    "lintcheck": "eslint ./src",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"

@@ -1,15 +1,15 @@
 @import "../../theme/theme.module.css";
 
 div.root {
-  margin: 0 auto;
-  padding: 4px;  
+  margin: calc(1.5*var(--spacing)) auto;
+  padding: 2px;
   background-color: var(--third);
   border-radius: 16px;
   text-align: left;
 }
 
 div.body {
-  padding: 8px 12px;
+  padding: 4px 16px;
   background-color: #fff9;
   color: #333;
   border-radius: 16px;
@@ -17,20 +17,21 @@ div.body {
 
 div.timestamp {
   color: #666;
-  font-size: 0.7em;
+  font-size: 0.6rem;
 }
 
 div.post {
-  margin: 8px;
+  margin: 4px;
   color: var(--first);
+  font-size: 0.85rem;
 }
 
 div.footer {
   display: flex;
   justify-content: space-between;  
-  font-size: 0.8em;
+  font-size: 0.6rem;
 }
 
 span.username {
-  color: #666;
+  color: #999;
 }
