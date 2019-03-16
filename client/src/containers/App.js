@@ -118,7 +118,7 @@ export default class App extends React.Component {
     this.setState((prevState) => {
       let newData = prevState.notes
       newData.push(note)
-
+      sortByTimestamp(newData)
       return {
         notes: newData,
       }

@@ -12,12 +12,7 @@ export default class Main extends React.Component {
     newNote: {
       post: "",      
     },
-  }
-
-  sortData = (data) => {
-    data.sort((a, b) => (a.post.toLowerCase() < b.post.toLowerCase() ? 1 : -1))
-    data.sort((a, b) => (a.priority < b.priority ? -1 : 1))
-  }
+  }  
 
   onFieldChange = (event) => {
     const original = this.state.newNote
